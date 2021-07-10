@@ -1,4 +1,4 @@
-# CLI habit tracker
+# imports
 from cli_tables.cli_tables import * 
 import time
 import re
@@ -29,14 +29,7 @@ def create_new_table():
         fields.append(i)
 
     print_table(fields, records)
-
-
     
-    
-
-    
-
-
 # Delete a table
 def delete_table():
     time.sleep(0.1)
@@ -52,8 +45,7 @@ def delete_table():
             os.remove(full_path)
 
 
-# MAIN
-
+# main 
 def main():
     print("Let's get started, welcome to the habit tracker")
     time.sleep(0.5)
