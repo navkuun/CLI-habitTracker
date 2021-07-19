@@ -85,17 +85,53 @@ def display_table():  # Currently working on
         print_table(table_list, double_hline=True, double_vline=True)
 
 
+def update_table():
+    print("- you have chosen to update one of your tables -")
+    table_name = input("Please enter your table name : ")
+
+    # display a list of habits that they have, with some given indices so
+    # that choosing a habit to update will be easier
+    try:
+        file_csv = open(f"{table_name}.csv")
+    except:
+        print("error - no table of that name found ")
+        pass
+
+    data_csv = csv.reader(file_csv)
+    list_csv = list(data_csv)
+
+    table_list = [x for x in list_csv if x]
+    table_list.pop(0)
+    habits = []
+    for lists in table_list:
+        habits.append([f"   {lists[0]}   "])
+
+    for i in range(1, len(habits) + 1):
+        habits[i-1].append(f"   {str(i)}   ")
+
+    habits.insert(0, ["Habit", "Index"])
+    print("Here are the habits in your table : ")
+    print_table(habits, double_vline=True, double_hline=True)
+    index_chosen = int(input("Please choose  : "))
+    chosen = habits[index_chosen - 1]
+
+    for habit in table_list:
+        if habit == chosen:
+            pass
+
 # main
+
+
 def main():
     print("Let's get started, welcome to the habit tracker")
     time.sleep(0.5)
     want_to_continue = input("Start program [Y/n] ")
     while want_to_continue.lower() != 'n':
         print("Options : ")
-        print("Create a new habit table : 1")
-        print("Delete a table : 2")
-        print("View habit tables : 3")
-        print("Add a new habit : 4")
+        print("Update your habit 😄 : 1")
+        print("View habit tables 😋 : 2")
+        print("Create a new habit table 😌 : 3")
+        print("Delete a table 😊 : 4")
 
         try:
             choice = int(input())
@@ -103,11 +139,14 @@ def main():
             print("Error - no 'valid' choice chosen")
 
         if choice == 1:
-            create_new_table()
+            update_table()
         elif choice == 2:
-            delete_table()
-        elif choice == 3:
             display_table()
+        elif choice == 3:
+            create_new_table()
+        elif choice == 4:
+            delete_table()
+
         want_to_continue = input("Continue [Y/n] ")
 
 
