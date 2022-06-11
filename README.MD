@@ -1,3 +1,5 @@
+# IN PROGRESS 
+
 # Habit tracker
 This is habit tracker in the form of a command line interface
 
